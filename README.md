@@ -1,10 +1,10 @@
 ## Youtube GIF Maker Using Next.js, Node and RabbitMQ
 
-### [Live Demo](ytgif.vercel.come)
+### [Live Demo](https://ytgif.vercel.app/)
 
 ### Dev.to Article
 
-View Details about this project on this [Dev.to Series](https://dev.to/ragrag/introduction-3dho-temp-slug-9834463/edit)
+View Details about this project on this [Dev.to Series](https://dev.to/ragrag/getting-started-youtube-gif-maker-using-next-js-node-and-rabbitmq-1cl9)
 
 ### Run locally
 
@@ -71,4 +71,4 @@ This is a sequence diagram of the system including all the components mentioned 
 
 ![Sequence Diagram](https://dev-to-uploads.s3.amazonaws.com/i/3p3q8twj2omqf3ndtw3g.png)
 
-Check the whole [Dev.to Series](https://dev.to/ragrag/introduction-3dho-temp-slug-9834463/edit) on this project
+Check the whole [Dev.to Series](https://dev.to/ragrag/getting-started-youtube-gif-maker-using-next-js-node-and-rabbitmq-1cl9) on this project
