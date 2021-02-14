@@ -1,0 +1,45 @@
+{
+  "name": "ytgif-service-worker",
+  "version": "0.0.0",
+  "description": "ytgif service worker",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "start": "npm run build && cross-env NODE_ENV=production node --experimental-wasm-threads --experimental-wasm-bulk-memory build/server.js",
+    "dev": "cross-env NODE_ENV=development nodemon src/server.ts",
+    "dev:debug": "cross-env NODE_ENV=development nodemon --inspect src/server.ts",
+    "build": "tsc",
+    "lint": "eslint --ignore-path .gitignore --ext .ts src/",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "dependencies": {
+    "@ffmpeg/core": "^0.8.5",
+    "@ffmpeg/ffmpeg": "^0.9.7",
+    "@google-cloud/storage": "^5.7.4",
+    "amqplib": "^0.6.0",
+    "cli-progress": "^3.9.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
+    "mongodb": "^3.6.4",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^9.1.0",
+    "typedi": "^0.10.0",
+    "typeorm": "^0.2.29",
+    "typescript": "^4.1.2",
+    "ytdl-core": "^4.4.5"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.5.17",
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^14.14.10",
+    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/parser": "^4.9.0",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.2.0",
+    "husky": "^4.3.0",
+    "node-gyp": "^7.1.2",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1"
+  }
+}

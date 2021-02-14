@@ -1,0 +1,25 @@
+# jobs API
+
+###
+# baseURL
+@baseURL = http://localhost:3001/api/v1
+@id = 601e85859974c622dc842a30
+###
+# Add Job
+POST {{baseURL}}/jobs
+Content-Type: application/json
+
+{
+    "youtubeUrl": "https://www.youtube.com/watch?v=dQbKj24kIWc",
+	"startTime": 10,
+    "endTime":15
+}
+
+###
+# Get Job by id
+GET {{baseURL}}/jobs/{{id}}
+Content-Type: application/json
+
+{
+
+}

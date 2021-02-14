@@ -1,0 +1,75 @@
+version: "2"
+services:
+    client:
+        build:
+          context: next-client/.
+          dockerfile: Dockerfile
+        image: ytgif-next-client
+        restart: always
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./next-client:/next-client
+            - /next-client/node_modules
+        links:
+            - backend
+        networks:
+            - webappnetwork
+    backend:
+        build:
+          context: node-backend/.
+          dockerfile: Dockerfile
+        image: ytgif-backend
+        restart: always
+        ports:
+            - "5001:5001"
+        volumes:
+            - ./node-backend:/node-backend
+            - /node-backend/node_modules
+        depends_on:
+            - mongodb
+            - rabbitmq
+        links:
+            - mongodb
+            - rabbitmq
+        networks:
+            - webappnetwork
+    worker:
+        build:
+          context: node-worker/.
+          dockerfile: Dockerfile
+        image: ytgif-worker
+        restart: always
+        volumes:
+            - ./node-worker:/node-worker
+            - /node-worker/node_modules
+        depends_on:
+            - mongodb
+            - rabbitmq
+        links:
+            - mongodb
+            - rabbitmq
+        networks:
+            - webappnetwork
+    mongodb:
+        image: mongo
+        restart: always
+        container_name: mongodb
+        command: mongod --noauth
+        volumes:
+            - ./.docker/data-node:/data/db
+        ports:
+            - "27017:27017"
+        networks:
+            - webappnetwork
+    rabbitmq:
+        image: 'rabbitmq:3.6-management-alpine'
+        container_name: rabbitmq
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        networks:
+            - webappnetwork 
+networks:
+    webappnetwork:
+        driver: bridge

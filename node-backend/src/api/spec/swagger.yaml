@@ -1,0 +1,105 @@
+tags:
+- name: jobs
+  description: jobs API
+
+paths:
+# [POST] /api/v1/signup
+  /api/v1/jobs:
+    post:
+      tags:
+      - jobs
+      summary: create a new conversion job
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                youtubeUrl:
+                  type: string
+                  description: youtube url of the video
+                  example: https://www.youtube.com/watch?v=gBRi6aZJGj4
+                startTime:
+                  type: number
+                  description: gif start time in seconds
+                  example: 40
+                endTime:
+                  type: number
+                  description: gif end time in seconds
+                  example: 50
+      responses:
+        201:
+          description: 'Created'
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/Job'
+        400:
+          description: 'Bad Request'
+
+  /api/v1/jobs{id}:
+    get:
+      tags:
+      - jobs
+      summary: get a job by its id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: job id
+      responses:
+        200:
+          description: 'Job details'
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/Job'
+        400:
+          description: 'Bad Request'
+        404:
+          description: 'Not Found'
+
+
+components:
+  schemas:
+    Job:
+      type: object
+      properties:
+        id:
+          type: string
+          description: job id
+          example: 6020220a629dfb3d78cf5166
+        youtubeUrl:
+          type: string
+          description: youtube url
+          example: https://www.youtube.com/watch?v=gBRi6aZJGj4
+        youtubeId:
+          type: string
+          description: youtube id
+          example: gBRi6aZJGj4
+        startTime:
+          type: number
+          description: gif start time in seconds
+          example: 40
+        endTime:
+          type: number
+          description: gif end time in seconds
+          example: 50
+        gifUrl:
+          type: string
+          description: gif url after conversion
+          example: https://storage.googleapis.com/this-or-that/ytgif/gifs/602028ba629dfb3d78cf5168
+        status:
+          type: string
+          description: "status of the gif conversion process (pending|processing|done|error)"
+          example: done
+        createdAt:
+          type: string
+          description: job creation data
+          example: 2021-02-07T17:30:10.589+00:00
+        updatedAt:
+          type: string
+          description: job last updated date
+          example: 2021-02-07T17:30:10.589+00:00

@@ -1,0 +1,15 @@
+{
+    "watch": [
+        "src",
+        ".env"
+    ],
+    "verbose": false,
+    "ext": "js,ts,json,yaml",
+    "ignore": [
+        "src/**/*.spec.ts",
+        "src/**/*.test.ts"
+    ],
+    "execMap": { 
+        "ts": "node --experimental-wasm-threads --experimental-wasm-bulk-memory --require ts-node/register/transpile-only"
+      }
+}
