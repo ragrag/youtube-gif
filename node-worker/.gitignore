@@ -41,6 +41,7 @@ build
 # Dependency directories
 node_modules/
 jspm_packages/
+src/media
 
 # TypeScript v1 declaration files
 typings/
