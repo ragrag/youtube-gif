@@ -38,6 +38,7 @@ bower_components
 build/Release
 
 # Dependency directories
+.docker/
 node_modules/
 jspm_packages/
 
