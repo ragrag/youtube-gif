@@ -8,9 +8,9 @@ const Home: React.FC = () => {
   const router = useRouter();
 
   const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const [loading, setLoading] = useState(false);
-  const [startTime, setStartTime] = useState<string>("");
-  const [endTime, setEndTime] = useState<string>("");
   const [ytPlayer, setYtPlayer] = useState(null);
 
   const validYoutubeUrl = useMemo(() => {
@@ -57,7 +57,7 @@ const Home: React.FC = () => {
         >
           <div className="column is-6">
             <div className="content">
-              {youtubeUrl && validYoutubeUrl ? (
+              {validYoutubeUrl ? (
                 <>
                   <h3>Preview</h3>
                   <YouTube
