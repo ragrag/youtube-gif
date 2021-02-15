@@ -61,6 +61,7 @@ class App {
     if (this.env === 'production') {
       this.app.use(morgan('combined', { stream }));
       this.app.use(cors({ origin: true }));
+      this.app.set('trust proxy', 1);
     } else if (this.env === 'development') {
       this.app.use(morgan('dev', { stream }));
       this.app.use(cors({ origin: true, credentials: true }));

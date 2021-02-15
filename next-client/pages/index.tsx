@@ -1,18 +1,22 @@
-import React, { useState, useEffect, useMemo } from "react";
-import Head from "next/head";
-import YouTube from "react-youtube";
 import axios from "axios";
+import Head from "next/head";
 import { useRouter } from "next/router";
-// import RangeSlider from "@aklos/react-range-slider";
+import React, { useMemo, useState } from "react";
+import YouTube from "react-youtube";
 
 const Home: React.FC = () => {
   const router = useRouter();
+
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [startTime, setStartTime] = useState<string>("");
   const [endTime, setEndTime] = useState<string>("");
-  const [videoDuration, setVideoDuration] = useState(0);
   const [ytPlayer, setYtPlayer] = useState(null);
+
+  const validYoutubeUrl = useMemo(() => {
+    const youtubeUrlRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+    return youtubeUrl.match(youtubeUrlRegex);
+  }, [youtubeUrl]);
 
   const ytVideoId = useMemo(() => {
     return youtubeUrl.split("v=")[1]?.slice(0, 11);
@@ -34,7 +38,7 @@ const Home: React.FC = () => {
       router.push(`/jobs/${response.data.id}`);
     } catch (err) {
       console.log(err);
-      alert("Something went wrong try again");
+      alert(err?.response?.data?.message || "Something went wrong");
     }
     setLoading(false);
   };
@@ -53,27 +57,29 @@ const Home: React.FC = () => {
         >
           <div className="column is-6">
             <div className="content">
-              <h3>Preview</h3>
-              {youtubeUrl ? (
-                <YouTube
-                  videoId={ytVideoId}
-                  opts={{
-                    playerVars: {
-                      start: Number(startTime),
-                      end: Number(endTime),
-                      autoplay: 0,
-                      disablekb: 1,
-                      loop: 0,
-                      rel: 0,
-                      color: "white",
-                      fs: 0,
-                      // controls: 1,
-                    },
-                  }}
-                  onReady={(e) => {
-                    setYtPlayer(e.target);
-                  }}
-                />
+              {youtubeUrl && validYoutubeUrl ? (
+                <>
+                  <h3>Preview</h3>
+                  <YouTube
+                    videoId={ytVideoId}
+                    opts={{
+                      playerVars: {
+                        start: Number(startTime),
+                        end: Number(endTime),
+                        autoplay: 0,
+                        disablekb: 1,
+                        loop: 0,
+                        rel: 0,
+                        color: "white",
+                        fs: 0,
+                        // controls: 1,
+                      },
+                    }}
+                    onReady={(e) => {
+                      setYtPlayer(e.target);
+                    }}
+                  />
+                </>
               ) : (
                 <h4>No Youtube Video Link Selected</h4>
               )}
@@ -84,7 +90,13 @@ const Home: React.FC = () => {
                   <div className="field">
                     <p className="control">
                       <input
-                        className="input is-dark"
+                        className={`input ${
+                          youtubeUrl === ""
+                            ? "is-dark"
+                            : validYoutubeUrl
+                            ? "is-success"
+                            : "is-danger"
+                        }`}
                         type="text"
                         placeholder="Youtube URL, eg: https://www.youtube.com/watch?v=I-QfPUz1es8"
                         value={youtubeUrl}
@@ -100,15 +112,6 @@ const Home: React.FC = () => {
               <br></br>
 
               <label className="label">Start/End Seconds</label>
-              {/* <RangeSlider
-                min={0}
-                max={videoDuration}
-                increment={1}
-                showLabels
-                flexibleRange
-                labelTransform={(labelStr) => "second : " + labelStr}
-                onChange={(start, end) => console.log(start, end)}
-              /> */}
               <div className="field is-horizontal">
                 <div className="field-body">
                   <div className="field">

@@ -35,7 +35,6 @@ export default class ConversionService {
   private async downloadVideo({ youtubeId, youtubeUrl }: YoutubeDownload): Promise<{ video: Readable; formatExtension: string }> {
     try {
       const info = await ytdl.getInfo(youtubeId);
-      if (Number(info?.videoDetails?.lengthSeconds) > 480) throw Error('Youtube Video Too Long');
       const format: ytdl.videoFormat = info.formats[0];
       if (!format) throw new Error('No matching format found');
       const video = ytdl(youtubeUrl, {

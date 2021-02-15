@@ -50,6 +50,7 @@ export default class RabbitMQService {
   }
 
   public async sendToQueue(message: string) {
+    if (process.env.NODE_ENV === 'testing') return;
     this.channel.sendToQueue(this.queueName, Buffer.from(message), {
       persistent: true,
     });

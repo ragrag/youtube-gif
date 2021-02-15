@@ -2,6 +2,7 @@ import "bulma/css/bulma.min.css";
 import Link from "next/link";
 import React from "react";
 import "../styles/globals.css";
+import Image from "next/image";
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -21,10 +22,9 @@ function MyApp({ Component, pageProps }) {
                 </h5>
               </Link>
               <Link href="/">
-                <img
+                <Image
                   className="hoverable"
-                  src="brand.jpg"
-                  alt="Bulma: Free, open source, and modern CSS framework based on Flexbox"
+                  src="/brand.jpg"
                   width="250"
                   height="100"
                 />

@@ -7,7 +7,7 @@ const validationMiddleware = (type: any, value: string | 'body' | 'query' | 'par
     validate(plainToClass(type, req[value]), { skipMissingProperties }).then((errors: ValidationError[]) => {
       if (errors.length > 0) {
         const message = errors.map((error: ValidationError) => Object.values(error.constraints)).join(', ');
-        res.status(400).send(message);
+        res.status(400).json({ message });
       } else {
         next();
       }

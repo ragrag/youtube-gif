@@ -1,16 +1,14 @@
 import { InferGetServerSidePropsType } from "next";
+import Head from "next/head";
 import React from "react";
+import useSWR from "swr";
 import Job from "../../lib/common/interfaces/Job.interface";
 import fetchJobById from "../../lib/requests/fetchers/jobById";
-import { useRouter } from "next/router";
-import useSWR from "swr";
-import Head from "next/head";
 
 export default function JobPage({
   jobId,
   initialJob,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const router = useRouter();
   const [jobDone, setJobDone] = React.useState(false);
 
   const { data: job, error: errorJob, isValidating: isValidatingJob } = useSWR(
@@ -27,7 +25,7 @@ export default function JobPage({
     if (job?.status === "done") setJobDone(true);
   }, [job]);
 
-  const loadingJob = !job || isValidatingJob;
+  const loadingJob = !job;
 
   return (
     <>

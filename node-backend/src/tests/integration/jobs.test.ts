@@ -30,6 +30,16 @@ describe('Job Routes', () => {
       done();
     });
 
+    it('invalid video duration, more than 8 minutes', async done => {
+      const res = await request(app.getServer()).post(`/api/v1/jobs`).send({
+        youtubeUrl: 'https://www.youtube.com/watch?v=RDfjXj5EGqI',
+        startTime: 10,
+        endTime: 20,
+      });
+      expect(res.status).toBe(400);
+      done();
+    });
+
     it('invalid youtube url  response statusCode 400', async done => {
       const res = await request(app.getServer()).post(`/api/v1/jobs`).send({
         youtubeUrl: 'https://www.youtube.com/watch?v=dQbKj24kIW',
