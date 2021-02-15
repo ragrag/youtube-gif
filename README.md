@@ -2,19 +2,18 @@
 
 ### [Live Demo](https://ytgif.vercel.app/)
 
-### Dev.to Article
+### [Dev.to Series](https://dev.to/ragrag/getting-started-youtube-gif-maker-using-next-js-node-and-rabbitmq-1cl9) - View Details about this project on the Dev.to series
 
-View Details about this project on this [Dev.to Series](https://dev.to/ragrag/getting-started-youtube-gif-maker-using-next-js-node-and-rabbitmq-1cl9)
+
 
 ### Run locally
 
 - Rename .env.example to .env
-- Fill missing env variable in node-worder (Google Cloud Storage related secrets)
+- Fill missing env variable in node-worker (Google Cloud Storage related secrets)
 
 #### Run using docker
 
-- Make sure docker & docker-compose are installed in your system
-  Run in terminal
+- Make sure docker & docker-compose are installed in your system then run
 
 ```
  docker-compose up -d --build
@@ -22,8 +21,7 @@ View Details about this project on this [Dev.to Series](https://dev.to/ragrag/ge
 
 #### Run without docker
 
-- Make sure MongoDB & RabbitMQ Server are installed on your machine
-  run in each of the folders
+- Make sure MongoDB & RabbitMQ Server are installed on your machine then run in each of the folders
 
 ```
 npm run dev
