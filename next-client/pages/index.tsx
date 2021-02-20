@@ -52,7 +52,7 @@ const Home: React.FC = () => {
         style={{ height: "100vh" }}
       >
         <div
-          className="columns is-mobile is-vcentered  is-centered has-text-centered"
+          className="columns is-mobile is-vcentered is-centered has-text-centered"
           style={{ width: "100%" }}
         >
           <div className="column is-6">
@@ -113,7 +113,7 @@ const Home: React.FC = () => {
 
               <label className="label">Start/End Seconds</label>
               <div className="field is-horizontal">
-                <div className="field-body">
+                <div className="field-body" style={{ marginRight: "10px" }}>
                   <div className="field">
                     <p className="control">
                       <input
